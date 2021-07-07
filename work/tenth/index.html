@@ -22,12 +22,61 @@
           <button class="search__btn" data-js="search-btn">検索する</button>
         </div>
         <div class="message"></div>
-        <ul class="lists"></ul>
+        <ul class="lists">
+          <li class="lists__item">
+            <div class="lists__item__inner">
+              <a href="" class="lists__item__link" target="_blank">
+                <img src="" class="lists__item__img" alt="">
+                <p class="lists__item__detail">作品名：</p>
+                <p class="lists__item__detail">作者　：</p>
+                <p class="lists__item__detail">出版社：</p>
+              </a>
+            </div>
+          </li>
+        </ul>
+        <div class="pager" data-js="pager">
+          <div class="counter">
+            <span class="counter-current"></span>/<span class="counter-all"></span>
+          </div>
+          <div class="btn-wrapper">
+            <a class="btn-item" data-js="page-prev" href="">前へ</a>
+            <a class="btn-item" data-js="page-next" href="">次へ</a>
+          </div>
+        </div>
       </div>
     </div>
     <script src="../../common/js/jquery.js"></script>
     <script src="./js/appid.js"></script>
     <script>
+      $(function() {
+        $('.search__btn').on('click', function() {
+          
+          console.log('btn')
+          getBookData()
+          
+        });
+
+        $.ajax({
+          url: 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20130522',
+          type: 'GET',
+          dataType: 'json',
+          data: {
+            applicationId: appId,
+            booksGenreId: '001',
+            hits: 20,
+            keyword: 'sample'
+          },
+        }).done(function(data) {
+          console.log(data);
+          $.each(data.Items, function(i, item) {
+            var temp =
+          });
+        }).fail(function(data) {
+          
+        }).always(function(data) {
+
+        });
+      });
       // 楽天ブックスの総合検索APIを使って製作してください。
       // answerの挙動を良く見てね！
       //
